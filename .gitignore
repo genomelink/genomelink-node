@@ -1,0 +1,9 @@
+# Logs
+logs
+*.log
+
+# Dependency directory
+node_modules
+
+# Remove some common IDE working directories
+.idea
