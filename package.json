@@ -2,8 +2,8 @@
   "name": "genomelink-node",
   "version": "0.1.0",
   "main": "lib/genomelink-node.min.js",
-  "repository": "https://github.com/knmkr/genomelink-node",
-  "author": "Hiroshi Kawaguchi <hi.kwgc@gmail.com>",
+  "repository": "https://github.com/AWAKENS-dev/genomelink-node",
+  "author": "AWAKENS, Inc.",
   "license": "MIT",
   "devDependencies": {
     "babel-cli": "^6.26.0",
