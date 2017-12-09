@@ -23,8 +23,8 @@ yarn add genomelink-node
 
 ```
 > const genomeLink = require('genomelink-node');
-> let report; genomeLink.Report.fetch({ name: 'eye-color', population: 'european', token: 'GENOMELINKTEST' }).then(_report => report = _report);
-> report.summary.text
+> const callback = (report) => { console.log(report.summary.text); }
+> genomeLink.Report.fetch({ name: 'eye-color', population: 'european', token: 'GENOMELINKTEST001' }).then((report) => { callback(report); });
 Tend to not have brown eyes, slightly
 ```
 
