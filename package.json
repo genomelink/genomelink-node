@@ -1,9 +1,9 @@
 {
   "name": "genomelink-node",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "main": "lib/genomelink-node.min.js",
-  "repository": "https://github.com/AWAKENS-dev/genomelink-node",
-  "author": "AWAKENS, Inc.",
+  "repository": "https://github.com/genomelink/genomelink-node",
+  "author": "GENOME LINK",
   "license": "MIT",
   "devDependencies": {
     "babel-cli": "^6.26.0",
