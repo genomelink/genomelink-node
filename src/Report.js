@@ -2,35 +2,45 @@ import { API_BASE } from './constants';
 import { fetchBy } from './utils';
 
 export default class Report {
-  static async fetch({ name, population, token }) {
-    const path = `${API_BASE}/v1/reports/${name}/?population=${population}`;
+  static async fetch({ name = '', population = '', token = '', clientSecret = '' }) {
+    let path = '';
+    let options = {};
 
-    const options = {
-      headers: {
-        authorization: `Bearer ${token}`
+    if (token.startsWith('T_')) {
+      // Enterprise edition endpoint
+      if (!clientSecret) {
+        clientSecret = process.env.GENOMELINK_CLIENT_SECRET;
+        if (!clientSecret) {
+          throw new Error('GENOMELINK_CLIENT_SECRET is not provided.');
+        }
       }
-    };
 
+      path = `${API_BASE}/v1/enterprise/reports/`;
+
+      let encodedToken = encodeURIComponent(token);
+      let body = `token=${encodedToken}`;
+
+      options = {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${clientSecret}`,
+          'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'
+        },
+        body: body
+      };
+    } else {
+      // Community edition endpoint
+      path = `${API_BASE}/v1/reports/${name}/?population=${population}`;
+      options = {
+        headers: {
+          authorization: `Bearer ${token}`
+        }
+      };
+    }
     return new Report(await fetchBy(path, options));
   }
 
-  constructor(data) {
-    this._data = data;
-  }
-
-  get phenotype() {
-    return this._data['phenotype'];
-  }
-
-  get population() {
-    return this._data['population'];
-  }
-
-  get scores() {
-    return this._data['scores'];
-  }
-
-  get summary() {
-    return this._data['summary'];
+  constructor(props) {
+    Object.assign(this, props);
   }
 }
