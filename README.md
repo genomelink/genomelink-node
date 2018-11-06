@@ -1,6 +1,6 @@
-# GENOME LINK Node.js SDK
+# Genomelink Node.js SDK
 
-Node.js client library to quickly get started with the GENOME LINK API
+Node.js client library to quickly get started with the Genomelink API
 
 
 ## Requirements
